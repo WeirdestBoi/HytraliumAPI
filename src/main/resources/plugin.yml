@@ -1,0 +1,6 @@
+name: HytraliumAPI
+version: '${project.version}'
+authors:
+  - Hytralium
+  - AslowBridger_
+main: me.hytralium.hytraliumapi.HytraliumAPI
