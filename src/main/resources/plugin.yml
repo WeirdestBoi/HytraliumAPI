@@ -4,3 +4,6 @@ authors:
   - Hytralium
   - AslowBridger_
 main: me.hytralium.hytraliumapi.HytraliumAPI
+commands:
+  testtesttest:
+    description: another test...

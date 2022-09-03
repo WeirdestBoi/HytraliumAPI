@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class GameJoinEvent extends Event {
+public class QueueJoinEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
 
     public HandlerList getHandlers() {
@@ -27,7 +27,7 @@ public class GameJoinEvent extends Event {
         return gameMode;
     }
 
-    public GameJoinEvent(Player player, HytraliumGameMode gameMode) {
+    public QueueJoinEvent(Player player, HytraliumGameMode gameMode) {
         this.player = player;
         this.gameMode = gameMode;
     }

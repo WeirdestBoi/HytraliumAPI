@@ -1,5 +1,6 @@
 package me.hytralium.hytraliumapi;
 
+import lombok.Getter;
 import me.hytralium.hytraliumapi.menusystem.MenuListener;
 import me.hytralium.hytraliumapi.menusystem.PlayerMenuUtility;
 import org.bukkit.Bukkit;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public final class HytraliumAPI extends JavaPlugin {
-    private static HytraliumAPI instance;
+    @Getter private static HytraliumAPI instance;
 
     private static final HashMap<Player, PlayerMenuUtility> playerMenuUtilityMap = new HashMap<>();
     public static PlayerMenuUtility getPlayerMenuUtility(Player p) {
@@ -39,7 +40,12 @@ public final class HytraliumAPI extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new MenuListener(), this);
+        this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         instance = this;
+        getCommand("testtesttest").setExecutor(new TestCommand());
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+
     }
 
     @Override
@@ -75,7 +81,4 @@ public final class HytraliumAPI extends JavaPlugin {
         player.sendPluginMessage(getInstance(), "BungeeCord", b.toByteArray());
     }
 
-    public static HytraliumAPI getInstance() {
-        return instance;
-    }
 }
