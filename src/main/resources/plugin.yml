@@ -1,5 +1,6 @@
 name: HytraliumAPI
 version: '${project.version}'
+softdepend: [ LuckPerms, TAB ]
 authors:
   - Hytralium
   - AslowBridger_

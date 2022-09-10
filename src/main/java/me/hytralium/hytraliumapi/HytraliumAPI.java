@@ -3,8 +3,11 @@ package me.hytralium.hytraliumapi;
 import lombok.Getter;
 import me.hytralium.hytraliumapi.menusystem.MenuListener;
 import me.hytralium.hytraliumapi.menusystem.PlayerMenuUtility;
+import me.neznamy.tab.api.TabAPI;
+import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -41,11 +44,19 @@ public final class HytraliumAPI extends JavaPlugin {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new MenuListener(), this);
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
         instance = this;
+
         getCommand("testtesttest").setExecutor(new TestCommand());
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
+        // LuckPerms
+        RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
+        if (provider != null) {
+            LuckPerms api = provider.getProvider();
+
+        }
     }
 
     @Override
@@ -80,5 +91,17 @@ public final class HytraliumAPI extends JavaPlugin {
         }
         player.sendPluginMessage(getInstance(), "BungeeCord", b.toByteArray());
     }
-
+    public static String getPrefix(Player player) {
+        if (getInstance().getServer().getPluginManager().isPluginEnabled("LuckPerms")) return DependencyManager.getPrefix(player);
+        return "";
+    }
+    public static void setBelowName(Player player, String text) {
+        DependencyManager.setBelowName(player, text);
+    }
+    public static void resetBelowName(Player player) {
+        DependencyManager.resetBelowName(player);
+    }
+    public static void showHealth(Player player) {
+        setBelowName(player, Colorize.color("&f" + Math.round(player.getHealth()) + "&c❤"));
+    }
 }

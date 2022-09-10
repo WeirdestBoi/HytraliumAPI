@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class QueueLeaveEvent extends Event {
+public class GameCancelEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
 
     public HandlerList getHandlers() {
@@ -16,7 +16,7 @@ public class QueueLeaveEvent extends Event {
         return handlers;
     }
 
-    public QueueLeaveEvent(Player player) {
+    public GameCancelEvent(Player player) {
         this.player = player;
     }
 
