@@ -47,7 +47,6 @@ public final class HytraliumAPI extends JavaPlugin {
 
         instance = this;
 
-        getCommand("testtesttest").setExecutor(new TestCommand());
         getConfig().options().copyDefaults();
         saveDefaultConfig();
 
