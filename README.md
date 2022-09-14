@@ -1,7 +1,21 @@
 # HytraliumAPI
 HytraliumAPI (v1.3)
 
-# How to get:
+## How to get:
+
+# repository
+`
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>`
+# dependency
+`
+        <dependency>
+            <groupId>com.github.WeirdestBoi</groupId>
+            <artifactId>HytraliumAPI</artifactId>
+            <version>1.3</version>
+        </dependency>`
 
 
 This is an API for the Hytralium Network devs! The Main class is `HytraliumAPI`
@@ -21,3 +35,5 @@ This is an API for the Hytralium Network devs! The Main class is `HytraliumAPI`
 
 ## Menu system
 there is also a HytraliumAPI menu system, no docu yet :(
+
+Hytralium
