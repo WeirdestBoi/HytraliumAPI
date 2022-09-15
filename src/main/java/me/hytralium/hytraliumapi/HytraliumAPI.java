@@ -3,7 +3,6 @@ package me.hytralium.hytraliumapi;
 import lombok.Getter;
 import me.hytralium.hytraliumapi.menusystem.MenuListener;
 import me.hytralium.hytraliumapi.menusystem.PlayerMenuUtility;
-import me.neznamy.tab.api.TabAPI;
 import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
