@@ -6,5 +6,3 @@ authors:
   - AslowBridger_
 main: me.hytralium.hytraliumapi.HytraliumAPI
 commands:
-  testsub:
-    description: test
