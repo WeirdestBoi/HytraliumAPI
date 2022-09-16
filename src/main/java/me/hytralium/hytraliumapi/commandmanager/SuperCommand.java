@@ -42,7 +42,7 @@ public abstract class SuperCommand {
                         break;
                     }
                     if (currentSub != null) currentSub.execute(p, Arrays.asList(args));
-                    else if (currentSub == null) sender.sendMessage(Colorize.color("Could not find the subcommand \"" + args[0] + "\", sorry"));
+                    else if (currentSub == null) sender.sendMessage(Colorize.color("&eCould not find the subcommand \"" + args[0] + "\", sorry"));
                 }
                 return true;
             }
