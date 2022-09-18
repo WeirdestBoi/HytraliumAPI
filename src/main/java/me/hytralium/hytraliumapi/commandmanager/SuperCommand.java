@@ -21,52 +21,51 @@ public abstract class SuperCommand {
     public abstract ArrayList<SubCommand> subCommands();
 
     public void register(JavaPlugin plugin) {
-        plugin.getCommand(this.name()).setExecutor(new CommandExecutor() {
-            @Override
-            public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-                if (!(sender instanceof Player)) return false;
-                Player p = (Player) sender;
-                if (args.length < 1) {
-                    sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
-                    sender.sendMessage(Colorize.color("&e" + displayName() + " &emade by " + author()));
-                    sender.sendMessage(Colorize.color("&eUse &7&l/" + name() + " help &efor help"));
-                    sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
-                } else if (args[0].equalsIgnoreCase("help")) {
-                    sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
-                    sender.sendMessage(Colorize.color("&e" + displayName() + " commands help&7:"));
-                    for (SubCommand sub : subCommands()) sender.sendMessage(Colorize.color("&7/" + name() + " " + sub.usage()));
-                    sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
-                } else {
-                    SubCommand currentSub = null;
-                    for (SubCommand subs : subCommands()) if (subs.name().equalsIgnoreCase(args[0])) {
-                        currentSub = subs;
-                        break;
-                    }
-                    if (currentSub != null) {
+        plugin.getCommand(this.name()).setExecutor((sender, cmd, label, args) -> {
+            if (!(sender instanceof Player)) return false;
+            Player p = (Player) sender;
+            if (!p.hasPermission(permission())) {
+                p.sendMessage(Colorize.color("&cSorry, but you dont have permission to use this command!"));
+                return false;
+            }
+            if (args.length < 1) {
+                sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
+                sender.sendMessage(Colorize.color("&e" + displayName() + " &emade by " + author()));
+                sender.sendMessage(Colorize.color("&eUse &7&l/" + name() + " help &efor help"));
+                sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
+            } else if (args[0].equalsIgnoreCase("help")) {
+                sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
+                sender.sendMessage(Colorize.color("&e" + displayName() + " commands help&7:"));
+                for (SubCommand sub : subCommands()) sender.sendMessage(Colorize.color("&7/" + name() + " " + sub.usage()));
+                sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
+            } else {
+                SubCommand currentSub = null;
+                for (SubCommand subs : subCommands()) if (subs.name().equalsIgnoreCase(args[0])) {
+                    currentSub = subs;
+                    break;
+                }
+                if (currentSub != null) {
+                    if (p.hasPermission(currentSub.permission()))
                         if (!currentSub.execute(p, Arrays.asList(args))) p.sendMessage(Colorize.color("&cWrong usage! " + currentSub.usage()));
-                    }
-                    else if (currentSub == null) sender.sendMessage(Colorize.color("&eCould not find the subcommand \"" + args[0] + "\", sorry"));
                 }
-                return true;
+                else sender.sendMessage(Colorize.color("&eCould not find the subcommand \"" + args[0] + "\", sorry"));
             }
+            return true;
         });
-        plugin.getCommand(this.name()).setTabCompleter(new TabCompleter() {
-            @Override
-            public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
-                List<String> commands = new ArrayList<>();
-                if (args.length == 1) {
-                    List<String> arguments = new ArrayList<>();
-                    arguments.add("help");
-                    for (SubCommand subs : subCommands()) arguments.add(subs.name());
-                    for (String s: arguments) {
-                        if (s.toLowerCase().startsWith(args[0].toLowerCase())) {
-                            commands.add(s);
-                        }
+        plugin.getCommand(this.name()).setTabCompleter((sender, cmd, label, args) -> {
+            List<String> commands = new ArrayList<>();
+            if (args.length == 1) {
+                List<String> arguments = new ArrayList<>();
+                arguments.add("help");
+                for (SubCommand subs : subCommands()) arguments.add(subs.name());
+                for (String s: arguments) {
+                    if (s.toLowerCase().startsWith(args[0].toLowerCase())) {
+                        commands.add(s);
                     }
-                    return commands;
                 }
-                return null;
+                return commands;
             }
+            return null;
         });
     }
 }
