@@ -38,32 +38,35 @@ public abstract class SuperCommand {
                 } else if (args[0].equalsIgnoreCase("help")) {
                     sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
                     sender.sendMessage(Colorize.color("&e" + displayName() + " commands help&7:"));
-                    for (SubCommand sub : subCommands()) sender.sendMessage(Colorize.color("&7/" + name() + " " + sub.usage()));
+                    for (SubCommand sub : subCommands())
+                        sender.sendMessage(Colorize.color("&7/" + name() + " " + sub.usage()));
                     sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
                 } else {
                     SubCommand currentSub = null;
-                    for (SubCommand subs : subCommands()) if (subs.name().equalsIgnoreCase(args[0])) {
-                        currentSub = subs;
-                        break;
-                    }
+                    for (SubCommand subs : subCommands())
+                        if (subs.name().equalsIgnoreCase(args[0])) {
+                            currentSub = subs;
+                            break;
+                        }
                     if (currentSub != null) {
                         if (p.hasPermission(currentSub.permission()))
-                            if (!currentSub.execute(p, Arrays.asList(args))) p.sendMessage(Colorize.color("&cWrong usage! " + currentSub.usage()));
-                    }
-                    else sender.sendMessage(Colorize.color("&eCould not find the subcommand \"" + args[0] + "\", sorry"));
+                            if (!currentSub.execute(p, Arrays.asList(args)))
+                                p.sendMessage(Colorize.color("&cWrong usage! " + currentSub.usage()));
+                    } else
+                        sender.sendMessage(Colorize.color("&eCould not find the subcommand \"" + args[0] + "\", sorry"));
                 }
                 return true;
             }
         });
         plugin.getCommand(this.name()).setTabCompleter(new TabCompleter() {
             @Override
-            public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+            public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args) {
                 List<String> commands = new ArrayList<>();
                 if (args.length == 1) {
                     List<String> arguments = new ArrayList<>();
                     arguments.add("help");
                     for (SubCommand subs : subCommands()) arguments.add(subs.name());
-                    for (String s: arguments) {
+                    for (String s : arguments) {
                         if (s.toLowerCase().startsWith(args[0].toLowerCase())) {
                             commands.add(s);
                         }
@@ -72,6 +75,6 @@ public abstract class SuperCommand {
                 }
                 return null;
             }
-        }
+        });
     }
 }
