@@ -1,5 +1,5 @@
 # HytraliumAPI
-HytraliumAPI (v1.3)
+HytraliumAPI (v1.4.6)
 
 ## How to get:
 
