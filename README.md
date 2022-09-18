@@ -39,6 +39,7 @@ This is an API for the Hytralium Network devs! The Main class is `HytraliumAPI`
 ### 1. Make new Class extending me.Hytralium.hytraliumapi.menusystem.menu
 ### 2. implement all of its methods and fill out the getters
 ### 3. (in IntelliJ) hover over the class name and select "create constructor matching super"
-### 4. to open this menu, you do new YourMenuName(HytraliumAPI.getPlayerMenuUtility(YourPlayer)).open(); (make sure to replace YourMenuNamewith your menu class name and YourPlayer with your player object)
+### 4. to open this menu, you do new YourMenuName(HytraliumAPI.getPlayerMenuUtility(YourPlayer)).open();
+(make sure to replace YourMenuNamewith your menu class name and YourPlayer with your player object)
 
 Hytralium
