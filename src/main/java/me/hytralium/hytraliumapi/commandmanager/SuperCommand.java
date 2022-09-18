@@ -66,9 +66,9 @@ public abstract class SuperCommand {
                     List<String> arguments = new ArrayList<>();
                     arguments.add("help");
                     for (SubCommand subs : subCommands()) arguments.add(subs.name());
-                    for (String s : arguments) {
-                        if (s.toLowerCase().startsWith(args[0].toLowerCase())) {
-                            commands.add(s);
+                    for (String strings : arguments) {
+                        if (strings.toLowerCase().startsWith(args[0].toLowerCase())) {
+                            commands.add(strings);
                         }
                     }
                     return commands;
