@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface SubCommand {
     String name();
-    void execute(Player p, List<String> args);
+    String permission();
+    String usage();
+    boolean execute(Player p, List<String> args);
 }

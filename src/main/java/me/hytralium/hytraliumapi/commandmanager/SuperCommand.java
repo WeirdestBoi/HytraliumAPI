@@ -15,6 +15,7 @@ import java.util.List;
 public abstract class SuperCommand {
     protected abstract String name();
     public abstract String displayName();
+    public abstract String permission();
     public abstract String author();
     public abstract String version();
     public abstract ArrayList<SubCommand> subCommands();
@@ -33,7 +34,7 @@ public abstract class SuperCommand {
                 } else if (args[0].equalsIgnoreCase("help")) {
                     sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
                     sender.sendMessage(Colorize.color("&e" + displayName() + " commands help&7:"));
-                    for (SubCommand sub : subCommands()) sender.sendMessage(Colorize.color("&7/" + name() + " " + sub.name()));
+                    for (SubCommand sub : subCommands()) sender.sendMessage(Colorize.color("&7/" + name() + " " + sub.usage()));
                     sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
                 } else {
                     SubCommand currentSub = null;
@@ -41,7 +42,9 @@ public abstract class SuperCommand {
                         currentSub = subs;
                         break;
                     }
-                    if (currentSub != null) currentSub.execute(p, Arrays.asList(args));
+                    if (currentSub != null) {
+                        if (!currentSub.execute(p, Arrays.asList(args))) p.sendMessage(Colorize.color("&cWrong usage! " + currentSub.usage()));
+                    }
                     else if (currentSub == null) sender.sendMessage(Colorize.color("&eCould not find the subcommand \"" + args[0] + "\", sorry"));
                 }
                 return true;
