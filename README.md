@@ -15,7 +15,7 @@ HytraliumAPI (v1.3)
         <dependency>
             <groupId>com.github.WeirdestBoi</groupId>
             <artifactId>HytraliumAPI</artifactId>
-            <version>1.3</version>
+            <version>1.4.6</version>
         </dependency>
 ```
 
