@@ -39,7 +39,7 @@ public abstract class SuperCommand {
                     sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
                     sender.sendMessage(Colorize.color("&e" + displayName() + " commands help&7:"));
                     for (SubCommand sub : subCommands())
-                        sender.sendMessage(Colorize.color("&7/" + name() + " " + sub.usage()));
+                        sender.sendMessage(Colorize.color("&7/" + name() + " " + sub.name() + "" + sub.usage()));
                     sender.sendMessage(Colorize.color("&9&m---------------------------------------"));
                 } else {
                     SubCommand currentSub = null;
@@ -50,8 +50,8 @@ public abstract class SuperCommand {
                         }
                     if (currentSub != null) {
                         if (p.hasPermission(currentSub.permission()))
-                            if (!currentSub.execute(p, Arrays.asList(args)))
-                                p.sendMessage(Colorize.color("&cWrong usage! " + currentSub.usage()));
+                            if (!(currentSub.execute(p, Arrays.asList(args))))
+                                p.sendMessage(Colorize.color("&cWrong usage! /" + name() + " " + currentSub.name() + " " + currentSub.usage()));
                     } else
                         sender.sendMessage(Colorize.color("&eCould not find the subcommand \"" + args[0] + "\", sorry"));
                 }
