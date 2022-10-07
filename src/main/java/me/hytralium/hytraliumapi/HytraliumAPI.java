@@ -5,7 +5,6 @@ import me.hytralium.hytraliumapi.menusystem.MenuListener;
 import me.hytralium.hytraliumapi.menusystem.PlayerMenuUtility;
 import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
