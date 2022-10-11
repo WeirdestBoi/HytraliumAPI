@@ -4,5 +4,6 @@ public enum HytraliumGameMode {
     BOXING,
     NODEBUFF,
     CLASSIC,
-    UHC
+    UHC,
+    SUMO
 }
