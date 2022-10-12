@@ -68,7 +68,13 @@ public final class HytraliumAPI extends JavaPlugin {
 
         Objective objective1 = scoreboard1.registerNewObjective("Title", "dummy");
         objective1.setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective1.setDisplayName(list.get(0));
+        objective1.setDisplayName(Colorize.color(list.get(0)));
+
+        int a = 0;
+        for (String s : list) {
+            list.set(a, Colorize.color(s));
+            a++;
+        }
 
         int j = list.size();
         for (int i = 1; i < list.size(); i++) {
