@@ -1,9 +1,13 @@
 package me.hytralium.hytraliumapi.menusystem;
 
+import me.hytralium.hytraliumapi.Colorize;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public abstract class Menu implements InventoryHolder {
     protected PlayerMenuUtility playerMenuUtility;
@@ -35,4 +39,11 @@ public abstract class Menu implements InventoryHolder {
         return inventory;
     }
 
+    public ItemStack makeItem(Material material, String displayName) {
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(Colorize.color(displayName));
+        item.setItemMeta(meta);
+        return item;
+    }
 }
