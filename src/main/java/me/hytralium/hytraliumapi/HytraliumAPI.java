@@ -21,12 +21,10 @@ import java.util.HashMap;
 
 public final class HytraliumAPI extends JavaPlugin {
     @Getter private static HytraliumAPI instance;
-    @Getter static private ObjectConverter objectConverter;
 
     private static final HashMap<Player, PlayerMenuUtility> playerMenuUtilityMap = new HashMap<>();
     public static PlayerMenuUtility getPlayerMenuUtility(Player p) {
         PlayerMenuUtility playerMenuUtility;
-        objectConverter = new ObjectConverter();
         if (!(playerMenuUtilityMap.containsKey(p))) {
 
             playerMenuUtility = new PlayerMenuUtility(p);

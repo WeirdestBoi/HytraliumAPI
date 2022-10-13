@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Base64;
 
 public class ObjectConverter {
-    public String convertObjectToString(Object object) {
+    public static String convertObjectToString(Object object) {
         String encodedOnject;
         try {
             ByteArrayOutputStream io = new ByteArrayOutputStream();
@@ -24,7 +24,7 @@ public class ObjectConverter {
         }
     }
 
-    public Object convertStringToObject(String string) {
+    public static Object convertStringToObject(String string) {
         try {
             byte[] serializedObject;
             serializedObject = Base64.getDecoder().decode(string);
