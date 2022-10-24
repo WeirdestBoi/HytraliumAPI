@@ -1,6 +1,6 @@
 name: HytraliumAPI
 version: '${project.version}'
-softdepend: [ LuckPerms, TAB ]
+softdepend: [ LuckPerms, TAB, WorldEdit, BountifulAPI ]
 authors:
   - Hytralium
   - AslowBridger_

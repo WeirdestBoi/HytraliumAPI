@@ -5,5 +5,9 @@ public enum HytraliumGameMode {
     NODEBUFF,
     CLASSIC,
     UHC,
-    SUMO
+    SUMO,
+
+    HC_SOLO,
+    HC_1v1v1v1,
+    HC_2v2
 }
