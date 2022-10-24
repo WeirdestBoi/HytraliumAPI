@@ -102,9 +102,5 @@
             <version>6.1.4-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>com.github.</groupId>
-            <artifactId></artifactId>
-        </dependency>
     </dependencies>
 </project>
