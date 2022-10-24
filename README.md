@@ -1,5 +1,5 @@
 # HytraliumAPI
-HytraliumAPI (v1.4.6)
+HytraliumAPI (v1.6.2)
 
 ## How to get:
 
@@ -15,7 +15,7 @@ HytraliumAPI (v1.4.6)
 <dependency>
     <groupId>com.github.WeirdestBoi</groupId>
     <artifactId>HytraliumAPI</artifactId>
-    <version>1.4.6</version>
+    <version>1.6.2</version>
 </dependency>
 ```
 
