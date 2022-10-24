@@ -136,7 +136,7 @@ public final class HytraliumAPI extends JavaPlugin {
         head.setItemMeta(meta);
         return head;
     }
-    void resetMap(File schematicFile, Location location, boolean noAir) {
+    void resetMap(File schematicFile, Location location, int angle, boolean noAir) {
         if (!getServer().getPluginManager().isPluginEnabled("WorldEdit")) return;
 
         EditSession editSession = WorldEdit.getInstance().getEditSessionFactory().getEditSession(new BukkitWorld(location.getWorld()), 10000000);
@@ -144,6 +144,7 @@ public final class HytraliumAPI extends JavaPlugin {
 
         try {
             CuboidClipboard clipboard = MCEditSchematicFormat.getFormat(schematicFile).load(schematicFile);
+            clipboard.rotate2D(angle);
             clipboard.paste(editSession, vector, noAir);
         } catch (MaxChangedBlocksException | DataException | IOException exception) {
             exception.printStackTrace();
