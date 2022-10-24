@@ -1,5 +1,6 @@
 package me.hytralium.hytraliumapi.menusystem;
 
+import me.hytralium.hytraliumapi.Colorize;
 import me.hytralium.hytraliumapi.Debug;
 import me.hytralium.hytraliumapi.HytraliumAPI;
 import org.bukkit.ChatColor;
@@ -54,18 +55,38 @@ public abstract class PaginatedMenu extends Menu {
             if (getList().get(i) != null) {
                 ItemStack item = new ItemStack(getItemMaterial());
                 ItemMeta meta = item.getItemMeta();
-                meta.setDisplayName(ChatColor.GOLD + getList().get(i) + ChatColor.GRAY + "(ID: " + i + " " + a + ")");
-                if (getLore(i) != null) meta.setLore(getLore(i));
+                meta.setDisplayName(ChatColor.GOLD + getList().get(i) + ChatColor.GRAY + " (ID: " + i + " " + a + ")");
+                if (getLore(i) != null) meta.setLore(colorize(getLore(i)));
                 item.setItemMeta(meta);
                 inventory.setItem(getAllowedSlots().get(a), item);
             } else Debug.info("the item at " + i + " doesnt exist");
             a++;
         }
+
+        inventory.setItem(50, makeItem(Material.ARROW, ChatColor.GREEN + "Next Page!"));
+        inventory.setItem(49, makeItem(Material.BOOKSHELF, ChatColor.GREEN + "This is Page: " + this.page));
+        inventory.setItem(48, makeItem(Material.BLAZE_ROD, ChatColor.GREEN + "Last Page"));
     }
+
 
     @Override
     public int getSlots() {
         return 54;
+    }
+
+    public void managePages(ItemStack item, Player player) {
+        switch (item.getType()) {
+            case ARROW:
+                this.page++;
+                open();
+                break;
+            case BLAZE_ROD:
+                if (page > 1) {
+                    page--;
+                    open();
+                } else player.sendMessage(ChatColor.RED + "You are already on the first page!");
+                break;
+        }
     }
 
     ArrayList<Integer> getBorderGlassSlots() {
@@ -113,5 +134,13 @@ public abstract class PaginatedMenu extends Menu {
         slots.add(42);
         slots.add(43);
         return slots;
+    }
+    private ArrayList<String> colorize(ArrayList<String> list) {
+        int i = 0;
+        for (String s : list) {
+            list.set(i, Colorize.color(s));
+            i++;
+        }
+        return list;
     }
 }
