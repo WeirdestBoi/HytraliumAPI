@@ -13,4 +13,5 @@ public class ChatUtil {
     public static void sendTitle(Player player, String title, String subTitle, int fadeIn, int stay, int fadeOut) {
         BountifulAPI.sendTitle(player, fadeIn, stay, fadeOut, title, subTitle);
     }
+    public static void clearTitle(Player player) {BountifulAPI.clearTitle(player);}
 }
