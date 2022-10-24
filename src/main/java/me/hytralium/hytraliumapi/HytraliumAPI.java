@@ -137,7 +137,7 @@ public final class HytraliumAPI extends JavaPlugin {
         return head;
     }
     public static void pasteSchematic(File schematicFile, Location location, int angle, boolean noAir) {
-        if (!getServer().getPluginManager().isPluginEnabled("WorldEdit")) return;
+        if (!Bukkit.getPluginManager().isPluginEnabled("WorldEdit")) return;
 
         EditSession editSession = WorldEdit.getInstance().getEditSessionFactory().getEditSession(new BukkitWorld(location.getWorld()), 10000000);
         Vector vector = new Vector(location.getX(), location.getY(), location.getZ());
