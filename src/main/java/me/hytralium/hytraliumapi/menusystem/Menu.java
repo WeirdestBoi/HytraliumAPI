@@ -1,8 +1,10 @@
 package me.hytralium.hytraliumapi.menusystem;
 
 import me.hytralium.hytraliumapi.Colorize;
+import me.hytralium.hytraliumapi.HytraliumAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -15,6 +17,9 @@ public abstract class Menu implements InventoryHolder {
 
     public Menu(PlayerMenuUtility playerMenuUtility) {
         this.playerMenuUtility = playerMenuUtility;
+    }
+    public Menu(Player player) {
+        this.playerMenuUtility = HytraliumAPI.getPlayerMenuUtility(player);
     }
 
     public abstract String getMenuName();
